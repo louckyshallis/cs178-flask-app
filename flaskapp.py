@@ -54,13 +54,19 @@ def delete_user():
         return render_template('delete_user.html')
 
 
-@app.route('/display-users')
-def display_users():
-    # hard code a value to the users_list;
-    # note that this could have been a result from an SQL query :) 
-    users_list = (('John','Doe','Comedy'),('Jane', 'Doe','Drama'))
-    query = "SELECT * FROM Inventory LIMIT 10"
-    return render_template('display_users.html', users = users_list)
+@app.route('/view_cart')
+def view_cart():
+    full_cart = []
+
+    for item_name in cart:
+        query = "SELECT * FROM Inventory WHERE description = %s"
+        result = execute_query(query, (item_name,))
+
+        if result:
+            full_cart.append(result[0])   # add the full row dict
+
+    return render_template('cart.html', items=full_cart)
+
 
 
 @app.route('/store-items', methods=['GET', 'POST'])
