@@ -11,6 +11,8 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key' # this is an artifact for using flash displays; 
                                    # it is required, but you can leave this alone
 
+cart = []
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -60,17 +62,28 @@ def display_users():
     query = "SELECT * FROM Inventory LIMIT 10"
     return render_template('display_users.html', users = users_list)
 
+
 @app.route('/store-items', methods=['GET', 'POST'])
 def store_items():
     if request.method == 'POST':
         item_name = request.form['item_name']
-        print("Name:", item_name)
-        flash(f'Item "{item_name}" added successfully!', 'success')
+        #Check if in database
+        query = "SELECT * FROM Inventory WHERE description = %s"
+        result = execute_query(query, (item_name,))
+        if result:
+            # Item exists, so add to cart
+            cart.append(result[0])  # add the row dictionary
+            flash(f'Added "{item_name}" to cart!', 'success')
+        else:
+            # Item does not exist, so notify user
+            flash(f'Item "{item_name}" is not sold here', 'danger')
+
         return redirect(url_for('store_items'))
     else:
-        query = "SELECT * FROM Inventory LIMIT 15"
+        query = "SELECT * FROM Inventory LIMIT 50"
         items_list = execute_query(query)
         return render_template('store_items.html', items=items_list)
+
 
 
 # these two lines of code should always be the last in the file
