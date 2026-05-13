@@ -54,7 +54,7 @@ def delete_user():
         return render_template('delete_user.html')
 
 
-@app.route('/view_cart')
+@app.route('/view-cart')
 def view_cart():
     full_cart = []
 
@@ -65,7 +65,7 @@ def view_cart():
         if result:
             full_cart.append(result[0])   # add the full row dict
 
-    return render_template('cart.html', items=full_cart)
+    return render_template('view_cart.html', items=full_cart)
 
 
 
