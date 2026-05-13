@@ -105,16 +105,12 @@ def checkout():
     # Calculate total
     total_price = sum(item["price"] for item in full_cart)
 
-    # Save summary to pass to template
-    summary = {
-        "items": full_cart,
-        "total": total_price
-    }
-
-    # Clear the cart
+    # Clear the cart after checkout
     cart.clear()
 
-    return render_template('checkout.html', summary=summary)
+    # Render summary page
+    return render_template('checkout.html', items=full_cart, total=total_price)
+
 
 
 # these two lines of code should always be the last in the file
