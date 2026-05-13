@@ -60,28 +60,18 @@ def display_users():
     query = "SELECT * FROM Inventory LIMIT 10"
     return render_template('display_users.html', users = users_list)
 
-@app.route('/store-items')
+@app.route('/store-items', methods=['GET', 'POST'])
 def store_items():
-    # hard code a value to the users_list;
-    # note that this could have been a result from an SQL query :) 
-    query = "SELECT * FROM Inventory LIMIT 10"
-    items_list = execute_query(query)
-    return render_template('store_items.html', items = items_list)
-def add_item():
     if request.method == 'POST':
-        # Extract form data
         item_name = request.form['item_name']
-        
-        # Process the data (e.g., add it to a database)
-        # For now, let's just print it to the console
         print("Name:", item_name)
-        
-        flash('Item added successfully! Huzzah!', 'success')  # 'success' is a category; makes a green banner at the top
-        # Redirect to home page or another page upon successful submission
-        return redirect(url_for('home'))
+        flash(f'Item "{item_name}" added successfully!', 'success')
+        return redirect(url_for('store_items'))
     else:
-        # Render the form page if the request method is GET
-        return render_template('add_user.html')
+        query = "SELECT * FROM Inventory LIMIT 15"
+        items_list = execute_query(query)
+        return render_template('store_items.html', items=items_list)
+
 
 # these two lines of code should always be the last in the file
 if __name__ == '__main__':
