@@ -6,6 +6,16 @@
 </head>
 <body>
     <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} mt-3">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
         <h2 class="mt-5">Items List</h2>
         <table class="table table-bordered table-striped mt-3">
             <thead class="thead-dark">
