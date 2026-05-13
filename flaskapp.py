@@ -61,6 +61,14 @@ def display_users():
     users_list2 = execute_query(query)
     return render_template('display_users.html', users = users_list2)
 
+@app.route('/store-items')
+def display_users():
+    # hard code a value to the users_list;
+    # note that this could have been a result from an SQL query :) 
+    query = "SELECT * FROM Inventory LIMIT 10"
+    items_list = execute_query(query)
+    return render_template('store_items.html', items = items_list)
+
 
 # these two lines of code should always be the last in the file
 if __name__ == '__main__':
