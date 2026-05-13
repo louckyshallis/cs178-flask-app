@@ -11,10 +11,10 @@
         <table class="table table-bordered table-striped mt-3">
             <thead class="thead-dark"> <!-- creates a dark background for the table header -->
                 <tr>
-                    <th>ID</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Category ID</th>
+                    <td>{{ item.ID }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.categoryID }}</td>
                 </tr>
             </thead>
             <tbody> <!-- table body -- loop through all of the users -->
