@@ -6,7 +6,6 @@
 </head>
 <body>
     <div class="container">
-
         <h2 class="mt-5">Checkout Summary</h2>
 
         <table class="table table-bordered table-striped mt-3">
@@ -16,9 +15,8 @@
                     <th>Price</th>
                 </tr>
             </thead>
-
             <tbody>
-                {% for item in summary.items %}
+                {% for item in items %}
                 <tr>
                     <td>{{ item.description }}</td>
                     <td>${{ item.price }}</td>
@@ -28,13 +26,15 @@
         </table>
 
         <h3 class="mt-4 font-weight-bold">
-            Total Paid: ${{ "%.2f"|format(summary.total) }}
+            Total Paid: ${{ "%.2f"|format(total) }}
         </h3>
 
-        <a href="{{ url_for('home') }}" class="btn btn-primary mt-4">
-            Return Home
-        </a>
-
+        <div class="mt-4">
+            <div class="alert alert-success">
+                Thank you for your purchase! Your cart has been cleared.
+            </div>
+            <a href="{{ url_for('home') }}" class="btn btn-primary">Return Home</a>
+        </div>
     </div>
 </body>
 </html>
