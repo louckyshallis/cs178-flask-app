@@ -58,11 +58,10 @@ def display_users():
     # note that this could have been a result from an SQL query :) 
     users_list = (('John','Doe','Comedy'),('Jane', 'Doe','Drama'))
     query = "SELECT * FROM Inventory LIMIT 10"
-    users_list2 = execute_query(query)
-    return render_template('display_users.html', users = users_list2)
+    return render_template('display_users.html', users = users_list)
 
 @app.route('/store-items')
-def display_users():
+def store_items():
     # hard code a value to the users_list;
     # note that this could have been a result from an SQL query :) 
     query = "SELECT * FROM Inventory LIMIT 10"
