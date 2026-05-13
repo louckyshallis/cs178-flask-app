@@ -7,9 +7,11 @@
 ---
 
 ## Overview
-
-<!-- Describe your project in 2-4 sentences. What does it do? Who is it for? What problem does it solve? -->
-
+This is a store. Users click the first button to enter the store.
+From there they can enter items into their cart. If they enter an item that is not in the database, it will tell them that the store does not carry it.
+They can either go back to the home page or view cart
+View cart shows the items in their cart as well as the total. Pressing checkout will print out the items in the cart and remove those items from the cart.
+The home page also has a Remove item button which lets the user remove an item from their cart.
 ---
 
 ## Technologies Used
