@@ -65,7 +65,8 @@ def view_cart():
         if result:
             full_cart.append(result[0])   # add the full row dict
 
-    return render_template('view_cart.html', items=full_cart)
+    total_price = sum(item["price"] for item in full_cart)
+    return render_template('view_cart.html', items=full_cart, total = total_price)
 
 
 
