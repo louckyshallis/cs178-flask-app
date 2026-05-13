@@ -57,7 +57,7 @@ def display_users():
     # hard code a value to the users_list;
     # note that this could have been a result from an SQL query :) 
     users_list = (('John','Doe','Comedy'),('Jane', 'Doe','Drama'))
-    query = "SELECT * LIMIT 10 FROM ProjectOneStore"
+    query = "SELECT * LIMIT 10 FROM Inventory"
     users_list2 = execute_query(query)
     return render_template('display_users.html', users = users_list2)
 
