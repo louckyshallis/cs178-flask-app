@@ -57,7 +57,9 @@ def display_users():
     # hard code a value to the users_list;
     # note that this could have been a result from an SQL query :) 
     users_list = (('John','Doe','Comedy'),('Jane', 'Doe','Drama'))
-    return render_template('display_users.html', users = users_list)
+    query = "SELECT * LIMIT 10 FROM ProjectOneStore"
+    users_list2 = execute_query()
+    return render_template('display_users.html', users = users_list2)
 
 
 # these two lines of code should always be the last in the file
