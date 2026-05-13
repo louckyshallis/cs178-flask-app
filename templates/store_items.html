@@ -30,7 +30,7 @@
 
         <!-- Add Item section below the table -->
         <h2 class="mt-5">Add Item to Cart</h2>
-        <form action="{{ url_for('add_item') }}" method="post" class="mt-3">
+        <form action="{{ url_for('store_items') }}" method="post" class="mt-3">
             <div class="form-group">
                 <label for="item_name">Item Name:</label>
                 <input type="text" id="item_name" name="item_name" class="form-control" required>
