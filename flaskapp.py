@@ -111,6 +111,17 @@ def checkout():
     # Render summary page
     return render_template('checkout.html', items=full_cart, total=total_price)
 
+@app.route('/remove-item', methods=['POST'])
+def remove_item_submit():
+    item_name = request.form.get('item_name')
+
+    if item_name in cart:
+        cart.remove(item_name)
+        flash(f"{item_name} removed from cart.", "success")
+    else:
+        flash(f"{item_name} not found in cart.", "danger")
+
+    return redirect(url_for('view_cart'))
 
 
 # these two lines of code should always be the last in the file

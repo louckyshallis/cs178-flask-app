@@ -1,14 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Delete User</title>
-  </head>
-  <body>
-    <h1>Delete User</h1>
-    <form action="{{ url_for('delete_user') }}" method="post">
-      <label for="name">Name:</label><br />
-      <input type="text" id="name" name="name" required /><br />
-      <input type="submit" value="Submit" />
-    </form>
-  </body>
+<head>
+    <title>Remove Item</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <h2 class="mt-5">Remove an Item From Your Cart</h2>
+
+        <form action="{{ url_for('remove_item_submit') }}" method="post" class="mt-3">
+            <div class="form-group">
+                <label for="item_name">Item Name:</label>
+                <input type="text" id="item_name" name="item_name" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Remove Item</button>
+        </form>
+
+        <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Back Home</a>
+
+    </div>
+</body>
 </html>
