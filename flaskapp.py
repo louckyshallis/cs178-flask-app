@@ -78,7 +78,7 @@ def store_items():
         result = execute_query(query, (item_name,))
         if result:
             # Item exists, so add to cart
-            cart.append(result[0])  # add the row dictionary
+            cart.append(item_name)  # add the row dictionary
             flash(f'Added "{item_name}" to cart!', 'success')
         else:
             # Item does not exist, so notify user
