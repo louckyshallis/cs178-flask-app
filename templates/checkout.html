@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Your Cart</title>
+    <title>Checkout Summary</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
 
-        <h2 class="mt-5">Your Cart</h2>
+        <h2 class="mt-5">Checkout Summary</h2>
 
         <table class="table table-bordered table-striped mt-3">
             <thead class="thead-dark">
                 <tr>
-                    <th>ID</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>Category ID</th>
                 </tr>
             </thead>
 
             <tbody>
-                {% for item in items %}
+                {% for item in summary.items %}
                 <tr>
-                    <td>{{ item.ID }}</td>
                     <td>{{ item.description }}</td>
                     <td>${{ item.price }}</td>
-                    <td>{{ item.categoryID }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <h3 class="mt-4">
-            Total: ${{ "%.2f"|format(total) }}
-        </h3>
-        <a href="{{ url_for('checkout') }}" class="btn btn-success mt-3">
-            Checkout
-        </a>
 
+        <h3 class="mt-4 font-weight-bold">
+            Total Paid: ${{ "%.2f"|format(summary.total) }}
+        </h3>
+
+        <a href="{{ url_for('home') }}" class="btn btn-primary mt-4">
+            Return Home
+        </a>
 
     </div>
 </body>

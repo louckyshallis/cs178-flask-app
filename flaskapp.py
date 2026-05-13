@@ -91,6 +91,30 @@ def store_items():
         items_list = execute_query(query)
         return render_template('store_items.html', items=items_list)
 
+@app.route('/checkout')
+def checkout():
+    full_cart = []
+
+    # Rebuild full cart from item names
+    for item_name in cart:
+        query = "SELECT * FROM Inventory WHERE description = %s"
+        result = execute_query(query, (item_name,))
+        if result:
+            full_cart.append(result[0])
+
+    # Calculate total
+    total_price = sum(item["price"] for item in full_cart)
+
+    # Save summary to pass to template
+    summary = {
+        "items": full_cart,
+        "total": total_price
+    }
+
+    # Clear the cart
+    cart.clear()
+
+    return render_template('checkout.html', summary=summary)
 
 
 # these two lines of code should always be the last in the file
