@@ -67,7 +67,21 @@ def store_items():
     query = "SELECT * FROM Inventory LIMIT 10"
     items_list = execute_query(query)
     return render_template('store_items.html', items = items_list)
-
+def add_item():
+    if request.method == 'POST':
+        # Extract form data
+        item_name = request.form['item_name']
+        
+        # Process the data (e.g., add it to a database)
+        # For now, let's just print it to the console
+        print("Name:", item_name)
+        
+        flash('Item added successfully! Huzzah!', 'success')  # 'success' is a category; makes a green banner at the top
+        # Redirect to home page or another page upon successful submission
+        return redirect(url_for('home'))
+    else:
+        # Render the form page if the request method is GET
+        return render_template('add_user.html')
 
 # these two lines of code should always be the last in the file
 if __name__ == '__main__':
